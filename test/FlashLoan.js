@@ -15,24 +15,24 @@ describe('FlashLoan', () => {
         accounts = await ethers.getSigners()
         deployer = accounts[0]
 
-        //Load accounts
+        // Load accounts
         const FlashLoan = await ethers.getContractFactory('FlashLoan')
         const FlashLoanReceiver = await ethers.getContractFactory('FlashLoanReceiver')
         const Token = await ethers.getContractFactory('Token')
 
-        //Deploy token
+        // Deploy token
         token = await Token.deploy('AndyDang BlockChain Coin', 'ADBC', '10000000')
 
-        //Deploy Flash Loan pool
+        // Deploy Flash Loan pool
         flashLoan = await FlashLoan.deploy(token.address)
-        console.log(token.address)
+        console.log(token.address) 
+ 
 
-
-        //Approve tokens before depositing
+        // Approve tokens before depositing
         let transaction = await token.connect(deployer).approve(flashLoan.address, tokens(10000000))
         await transaction.wait()
 
-        //Deposit tokens into the pool
+        // Deposit tokens into the pool
         transaction = await flashLoan.connect(deployer).depositTokens(tokens(10000000))
         await transaction.wait()
 

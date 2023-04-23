@@ -6,7 +6,7 @@ import "./FlashLoan.sol";
 
 contract FlashLoanReceiver {
     FlashLoan private pool; 
-    address private owner; 
+    address private owner;  
 
     event LoanReceived(address token, uint256 amount);
 
@@ -14,7 +14,7 @@ contract FlashLoanReceiver {
         pool = FlashLoan(_poolAddress);
         owner = msg.sender;
         
-    }
+    } 
 
     function receiveTokens(address _tokenAddress, uint256 _amount) external {
         require(msg.sender == address(pool), "Sender must be pool");
